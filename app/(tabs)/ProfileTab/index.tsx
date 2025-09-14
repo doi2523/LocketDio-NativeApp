@@ -10,7 +10,7 @@ import { ExternalLink } from "@/components/external-link";
 import { Fonts } from "@/constants/theme";
 
 interface ProfileScreenProps {
-  goToPage: (pageIndex: number) => void;
+  goToPage: (pageKey: string) => void;
 }
 
 export default function ProfileScreen({ goToPage }: ProfileScreenProps) {
@@ -39,7 +39,7 @@ export default function ProfileScreen({ goToPage }: ProfileScreenProps) {
           This section can display account info such as username, email, etc.
         </ThemedText>
       </Collapsible>
-      <Button title="Go Home" onPress={() => goToPage(1)} />
+      <Button title="Go Home" onPress={() => goToPage("home")} />
 
 
       <Collapsible title="Settings">

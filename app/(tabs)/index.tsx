@@ -1,9 +1,5 @@
 import React, { useRef } from "react";
-import {
-  View,
-  StyleSheet,
-  Dimensions,
-} from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
 import PagerView from "react-native-pager-view";
 import ProfileScreen from "./ProfileTab";
 import TabTwoScreen from "./MessageTab";
@@ -14,19 +10,34 @@ const { width, height } = Dimensions.get("window");
 // HomeScreen với horizontal PagerView
 export default function HomeScreen() {
   const pagerRef = useRef<PagerView>(null);
-  const goToPage = (pageIndex: number) => {
-    pagerRef.current?.setPage(pageIndex);
+
+  // Mapping string key -> number index
+  const pageMap: Record<string, number> = {
+    profile: 0,
+    home: 1,
+    messages: 2,
+  };
+
+  const goToPage = (pageKey: string) => {
+    const pageIndex = pageMap[pageKey];
+    if (pageIndex !== undefined) {
+      pagerRef.current?.setPage(pageIndex);
+    }
   };
 
   return (
-    <PagerView style={styles.horizontalPager} initialPage={1} ref={pagerRef}>
-      <View key="1">
+    <PagerView
+      style={styles.horizontalPager}
+      initialPage={pageMap.home}
+      ref={pagerRef}
+    >
+      <View key="profile">
         <ProfileScreen goToPage={goToPage} />
       </View>
-      <View key="2">
+      <View key="home">
         <HomePage goToPage={goToPage} />
       </View>
-      <View key="3">
+      <View key="messages">
         <TabTwoScreen />
       </View>
     </PagerView>

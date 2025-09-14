@@ -21,7 +21,11 @@ import * as ImagePicker from "expo-image-picker";
 
 const { width } = Dimensions.get("window");
 
-export default function MainHomeTab() {
+interface ProfileScreenProps {
+  goToPage: (pageKey: string) => void;
+}
+
+export default function MainHomeTab({ goToPage }: ProfileScreenProps) {
   const [facing, setFacing] = useState<CameraType>("front");
   const [permission, requestPermission] = useCameraPermissions();
   const [photoUri, setPhotoUri] = useState<string | null>(null);
@@ -247,7 +251,14 @@ export default function MainHomeTab() {
           marginBottom: -50,
         }}
       >
-        <Pressable>
+        <Pressable
+          style={{
+            justifyContent: "center",
+            alignItems: "center", // căn ngang
+            flexDirection: "column",
+          }}
+          onPress={() => goToPage("history")}
+        >
           <Text
             style={{
               color: "white",

@@ -8,12 +8,12 @@ import Feather from "@expo/vector-icons/Feather";
 export default function HomeHeader({
   goToPage,
 }: {
-  goToPage: (pageIndex: number) => void;
+  goToPage: (pageIndex: string) => void;
 }) {
   return (
     <SafeAreaView edges={["top"]} style={headerStyles.container}>
       <View style={headerStyles.left}>
-        <Pressable style={headerStyles.btnAvatar} onPress={() => goToPage(0)}>
+        <Pressable style={headerStyles.btnAvatar} onPress={() => goToPage("profile")}>
           <Image
             source={require("@/assets/images/default-profile.png")}
             style={headerStyles.avatar}
@@ -32,7 +32,7 @@ export default function HomeHeader({
         </View>
       </View>
       <View style={headerStyles.right}>
-        <Pressable style={headerStyles.btnMess} onPress={() => goToPage(2)}>
+        <Pressable style={headerStyles.btnMess} onPress={() => goToPage("messages")}>
           <Feather name="message-circle" size={30} color="white" />
         </Pressable>
       </View>
